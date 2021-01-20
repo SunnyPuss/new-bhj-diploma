@@ -8,6 +8,10 @@ describe("Класс User", function() {
     expect(new User).to.be.an.instanceof(User);
   });
 
+  it('Свойство HOST имеет значение Entity.HOST', () => {
+    expect(User.HOST).to.be.equals( Entity.HOST );
+  });
+
   it('Свойство URL имеет значение /user', () => {
     expect(User.URL).to.be.equals( '/user' );
   });
@@ -26,10 +30,10 @@ describe("Класс User", function() {
       expect(xhr.requestMethod).to.be.equals( 'POST' );
     });
 
-    it('Обращается по адресу, определённому в свойстве URL', () => {
+    it('Обращается по адресу, определённому в свойстве HOST', () => {
       const xhr = User.login();
 
-      expect(xhr.requestURL).to.be.equals(  User.URL + '/login' );
+      expect(xhr.requestURL).to.be.equals( User.HOST + User.URL + '/login' );
     });
   });
 
@@ -47,10 +51,10 @@ describe("Класс User", function() {
       expect(xhr.requestMethod).to.be.equals( 'POST' );
     });
 
-    it('Обращается по адресу, определённому в свойстве URL', () => {
+    it('Обращается по адресу, определённому в свойстве HOST', () => {
       const xhr = User.register();
 
-      expect(xhr.requestURL).to.be.equals( User.URL + '/register' );
+      expect(xhr.requestURL).to.be.equals( User.HOST + User.URL + '/register' );
     });
   });
 
@@ -68,10 +72,10 @@ describe("Класс User", function() {
       expect(xhr.requestMethod).to.be.equals( 'POST' );
     });
 
-    it('Обращается по адресу, определённому в свойстве URL', () => {
+    it('Обращается по адресу, определённому в свойстве HOST', () => {
       const xhr = User.logout();
 
-      expect(xhr.requestURL).to.be.equals( User.URL + '/logout' );
+      expect(xhr.requestURL).to.be.equals( User.HOST + User.URL + '/logout' );
     });
   });
 });

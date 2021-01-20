@@ -10,15 +10,25 @@ class TransactionsPage {
    * Сохраняет переданный элемент и регистрирует события
    * через registerEvents()
    * */
-  constructor( element ) {
-
+  constructor( element, lastOptions ) {
+    if (!element) {
+      throw new Error(`Элемент не существует в TransactionPage`);
+    };
+    this.element = element;
+    this.lastOptions = lastOptions;
+    this.registerEvents();
   }
 
+  static lastOptions = {};
   /**
    * Вызывает метод render для отрисовки страницы
    * */
   update() {
-
+    if (this.lastOptions) {
+      this.render(this.lastOptions);
+    } else {
+      this.render();
+    };
   }
 
   /**
@@ -28,6 +38,14 @@ class TransactionsPage {
    * TransactionsPage.removeAccount соответственно
    * */
   registerEvents() {
+    document.querySelector(`.content-wrapper`).addEventListener(`click`, (e) => {
+      e.preventDefault();
+      if (e.target == document.querySelector(`.remove-account`)) {
+        this.removeAccount();
+      } else if (e.target == document.querySelector(`.transaction__remove`)) {
+        this.removeTransaction(e.target.dataset.id);
+      };
+    })
 
   }
 
@@ -40,7 +58,22 @@ class TransactionsPage {
    * для обновления приложения
    * */
   removeAccount() {
-
+    
+    
+    if (this.lastOptions && confirm(`Вы действительно хотите удалить этот счёт?`)) {
+      
+      
+      Account.remove(this.lastOptions.account_id, this.lastOptions, (err, response) => {
+        console.log(response);
+        if (err) {
+          return err;
+        } else if (response.success == true) {
+          App.update();
+          this.clear();
+          
+        }
+      })
+    };
   }
 
   /**
@@ -49,7 +82,17 @@ class TransactionsPage {
    * По удалению транзакции вызовите метод App.update()
    * */
   removeTransaction( id ) {
-
+    if (this.lastOptions && confirm(`Вы действительно хотите удалить этоту транзакцию?`)) {
+      
+      Account.remove(id, this.lastOptions, (err, response) => {
+        console.log(response);
+        if (err) {
+          return err;
+        } else if (response.success == true) {
+          App.update();
+        }
+      })
+    };
   }
 
   /**
@@ -59,7 +102,35 @@ class TransactionsPage {
    * в TransactionsPage.renderTransactions()
    * */
   render( options ) {
-
+    this.lastOptions = options;
+    
+    if (this.lastOptions) {
+      console.log( options)
+      Account.get(this.lastOptions.account_id, User.current(), (err, response) => {
+        
+        if (err) {
+          return (err);
+        } else if (response.success == true) {
+          console.log( options)
+          // console.log (`куку`)
+          this.renderTitle(response.data.name);
+          console.log(response);
+          
+        }
+      })
+      
+      Transaction.list(this.lastOptions, (err, response) => {
+        
+        if (err) {
+          return err;
+        } else if (response.success == true) {
+          response.data.forEach(object => {
+            this.renderTransactions(object)
+          });
+        }
+      })
+    }
+    
   }
 
   /**
@@ -68,14 +139,16 @@ class TransactionsPage {
    * Устанавливает заголовок: «Название счёта»
    * */
   clear() {
-
+      this.renderTransactions([]);
+    this.renderTitle(`Название счёта`);
+    this.lastOptions = {};
   }
 
   /**
    * Устанавливает заголовок в элемент .content-title
    * */
   renderTitle( name ) {
-
+    document.querySelector(`.content-title`).textContent = name;
   }
 
   /**
@@ -83,7 +156,7 @@ class TransactionsPage {
    * в формат «10 марта 2019 г. в 03:20»
    * */
   formatDate( date ) {
-
+    console.log(Date.parse(date).toLocaleString());
   }
 
   /**
@@ -102,3 +175,4 @@ class TransactionsPage {
 
   }
 }
+

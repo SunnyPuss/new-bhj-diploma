@@ -8,6 +8,10 @@ describe("Класс Entity", function() {
     expect(new Entity).to.be.an.instanceof(Entity);
   });
 
+  it('Задано свойство HOST', () => {
+    expect(Entity.HOST).to.be.a('string');
+  });
+
   it('Задано свойство URL', () => {
     expect(Entity.URL).to.be.a('string');
   });
@@ -26,10 +30,10 @@ describe("Класс Entity", function() {
       expect(xhr.requestMethod).to.be.equals( 'GET' );
     });
 
-    it('Обращается по адресу, определённому в свойстве URL', () => {
+    it('Обращается по адресу, определённому в свойстве HOST', () => {
       const xhr = Entity.list();
 
-      expect(xhr.requestURL).to.be.equals( Entity.URL );
+      expect(xhr.requestURL).to.be.equals( Entity.HOST );
     });
   });
 
@@ -47,10 +51,10 @@ describe("Класс Entity", function() {
       expect(xhr.requestMethod).to.be.equals( 'POST' );
     });
 
-    it('Обращается по адресу, определённому в свойстве URL', () => {
+    it('Обращается по адресу, определённому в свойстве HOST', () => {
       const xhr = Entity.create();
 
-      expect(xhr.requestURL).to.be.equals( Entity.URL );
+      expect(xhr.requestURL).to.be.equals( Entity.HOST );
     });
   });
 
@@ -68,10 +72,10 @@ describe("Класс Entity", function() {
       expect(xhr.requestMethod).to.be.equals( 'POST' );
     });
 
-    it('Обращается по адресу, определённому в свойстве URL', () => {
+    it('Обращается по адресу, определённому в свойстве HOST', () => {
       const xhr = Entity.remove();
 
-      expect(xhr.requestURL).to.be.equals( Entity.URL  + '/' );
+      expect(xhr.requestURL).to.be.equals( Entity.HOST  + '/' );
     });
   });
 });
