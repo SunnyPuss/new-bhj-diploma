@@ -44,12 +44,20 @@ class Entity {
    * */
   static get( id = '', data, callback = f => f ) {
     return createRequest({
-      url: this.URL,
+      url: this.URL +  `/` + id,
+      // url: (this.URL +  `/` + id).splice(0, -1),
       method: `GET`,
       data: Object.assign({id: id}, data),
       responseType: `json`,
       callback
-      
+      // callback( err, response ) {
+      //   if (err) {
+      //       return err;
+      //   } else if( response && response.user ) {
+      //     this.url.splice(0, -1);
+      //   }
+      //   callback(err, response);
+      // }
     });
   }
 
