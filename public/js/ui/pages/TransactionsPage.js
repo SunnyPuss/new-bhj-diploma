@@ -105,16 +105,16 @@ class TransactionsPage {
     this.lastOptions = options;
     
     if (this.lastOptions) {
-      console.log( options)
+      // console.log(this.element);
       Account.get(this.lastOptions.account_id, User.current(), (err, response) => {
         
         if (err) {
           return (err);
         } else if (response.success == true) {
-          console.log( options)
-          // console.log (`куку`)
-          this.renderTitle(response.data.name);
-          console.log(response);
+          const actualAccount = response.data.find(item => item.id == this.lastOptions.account_id);
+          // console.log(actualAccount.name);
+          this.renderTitle(actualAccount.name);
+          
           
         }
       })
