@@ -111,12 +111,11 @@ class TransactionsPage {
         if (err) {
           return (err);
         } else if (response.success == true) {
-          console.log (response)
+          // console.log (response)
           // const actualAccount = response.data.find(item => item.id == this.lastOptions.account_id);
           // console.log(actualAccount.name);
           this.renderTitle(response.data.name);
-          
-          
+          this.formatDate( '2019-03-10 03:20:41' );
         }
       })
       
@@ -157,7 +156,22 @@ class TransactionsPage {
    * в формат «10 марта 2019 г. в 03:20»
    * */
   formatDate( date ) {
-    console.log(Date.parse(date).toLocaleString());
+    // const dateOptions = {
+    //   day: `2-digit`,
+    //   month: `long`,
+    //   year: `numeric`,
+    //   hour: `2-digit`,
+    //   minute: `2-digit`
+
+    // }
+    // const otherViewDate = new Date(Date.parse(date)).toLocaleDateString(`default`, dateOptions);
+    // console.log(`${setDay(otherViewDate)} ${getMonth(otherViewDate)} ${getYear(otherViewDate)} в ${getHour(otherViewDate)} ${getMinute(otherViewDate)}`)
+    // return `${getDay(otherViewDate)} ${getMonth(otherViewDate)} ${getYear(otherViewDate)} в ${getHour(otherViewDate)} ${getMinute(otherViewDate)}`;
+    const otherViewDate = new Date(Date.parse(date))
+    const dateTimeFormat = new Intl.DateTimeFormat('ru', { year: 'numeric', month: 'long', day: '2-digit', hour:'2-digit', minute: '2-digit' }) 
+const [{ value: day },,{ value: month },,{ value: year },,{ value: hour },,{ value: minute }] = dateTimeFormat.formatToParts(otherViewDate) 
+  console.log(`${day} ${month} ${year} в ${hour}:${minute}`);
+  return `${day} ${month} ${year} в ${hour}:${minute}`
   }
 
   /**
@@ -176,4 +190,5 @@ class TransactionsPage {
 
   }
 }
+
 
