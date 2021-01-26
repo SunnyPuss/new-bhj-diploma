@@ -6,6 +6,13 @@
       "password": "demo",
       "id": "1",
       "isAuthorized": false
+    },
+    {
+      "name": "Yog-Sothoth",
+      "email": "lurker@mail.com",
+      "password": "sunspheres",
+      "id": "3ke8pe1d8skkcrv9t5",
+      "isAuthorized": true
     }
   ],
   "accounts": [
@@ -23,6 +30,11 @@
       "name": "Бизнес",
       "user_id": "1",
       "id": "3"
+    },
+    {
+      "name": "prishol v muzey",
+      "user_id": "3ke8pe1d8skkcrv9t5",
+      "id": "3ke8pe1cdwkkcrvnuv"
     }
   ],
   "transactions": [
@@ -160,6 +172,14 @@
       "sum": 300000,
       "type": "expense",
       "user_id": "1"
+    },
+    {
+      "id": "3ke8pe1a1skkcrw5lb",
+      "type": "EXPENSE",
+      "name": "bilet",
+      "sum": 200,
+      "account_id": "3ke8pe1cdwkkcrvnuv",
+      "created_at": "2021-01-25T16:16:12.622Z"
     }
   ]
 }

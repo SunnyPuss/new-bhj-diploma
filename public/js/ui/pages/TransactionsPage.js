@@ -106,14 +106,15 @@ class TransactionsPage {
     
     if (this.lastOptions) {
       // console.log(this.element);
-      Account.get(this.lastOptions.account_id, User.current(), (err, response) => {
+      Account.get(options.account_id, options, (err, response) => {
         
         if (err) {
           return (err);
         } else if (response.success == true) {
-          const actualAccount = response.data.find(item => item.id == this.lastOptions.account_id);
+          console.log (response)
+          // const actualAccount = response.data.find(item => item.id == this.lastOptions.account_id);
           // console.log(actualAccount.name);
-          this.renderTitle(actualAccount.name);
+          this.renderTitle(response.data.name);
           
           
         }
@@ -139,7 +140,7 @@ class TransactionsPage {
    * Устанавливает заголовок: «Название счёта»
    * */
   clear() {
-      this.renderTransactions([]);
+    this.renderTransactions([]);
     this.renderTitle(`Название счёта`);
     this.lastOptions = {};
   }
