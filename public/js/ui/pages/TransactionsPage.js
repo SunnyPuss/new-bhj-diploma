@@ -115,17 +115,16 @@ class TransactionsPage {
           // const actualAccount = response.data.find(item => item.id == this.lastOptions.account_id);
           // console.log(actualAccount.name);
           this.renderTitle(response.data.name);
-          this.formatDate( '2019-03-10 03:20:41' );
         }
       })
       
       Transaction.list(this.lastOptions, (err, response) => {
-        
         if (err) {
           return err;
         } else if (response.success == true) {
           response.data.forEach(object => {
-            this.renderTransactions(object)
+            // console.log(object);
+            this.renderTransactions(object);
           });
         }
       })
@@ -169,8 +168,8 @@ class TransactionsPage {
     // return `${getDay(otherViewDate)} ${getMonth(otherViewDate)} ${getYear(otherViewDate)} в ${getHour(otherViewDate)} ${getMinute(otherViewDate)}`;
     const otherViewDate = new Date(Date.parse(date))
     const dateTimeFormat = new Intl.DateTimeFormat('ru', { year: 'numeric', month: 'long', day: '2-digit', hour:'2-digit', minute: '2-digit' }) 
-const [{ value: day },,{ value: month },,{ value: year },,{ value: hour },,{ value: minute }] = dateTimeFormat.formatToParts(otherViewDate) 
-  console.log(`${day} ${month} ${year} в ${hour}:${minute}`);
+    const [{ value: day },,{ value: month },,{ value: year },,{ value: hour },,{ value: minute }] = dateTimeFormat.formatToParts(otherViewDate) 
+  // console.log(`${day} ${month} ${year} в ${hour}:${minute}`);
   return `${day} ${month} ${year} в ${hour}:${minute}`
   }
 
@@ -179,7 +178,30 @@ const [{ value: day },,{ value: month },,{ value: year },,{ value: hour },,{ val
    * item - объект с информацией о транзакции
    * */
   getTransactionHTML( item ) {
-
+    return `<div class="transaction transaction_${item.type.toLowerCase()} row">
+    <div class="col-md-7 transaction__details">
+      <div class="transaction__icon">
+          <span class="fa fa-money fa-2x"></span>
+      </div>
+      <div class="transaction__info">
+          <h4 class="transaction__title">${item.name}</h4>
+          
+          <div class="transaction__date">${this.formatDate(item.created_at)}</div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="transaction__summ">
+      
+          ${item.sum} <span class="currency">₽</span>
+      </div>
+    </div>
+    <div class="col-md-2 transaction__controls">
+        
+        <button class="btn btn-danger transaction__remove" data-id="${item.account_id}">
+            <i class="fa fa-trash"></i>  
+        </button>
+    </div>
+</div>`
   }
 
   /**
@@ -187,7 +209,8 @@ const [{ value: day },,{ value: month },,{ value: year },,{ value: hour },,{ val
    * используя getTransactionHTML
    * */
   renderTransactions( data ) {
-
+    document.querySelector(`.content`).insertAdjacentHTML("afterbegin", this.getTransactionHTML(data));
+    
   }
 }
 
