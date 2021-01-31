@@ -10,16 +10,14 @@ class TransactionsPage {
    * Сохраняет переданный элемент и регистрирует события
    * через registerEvents()
    * */
-  constructor( element, lastOptions ) {
+  constructor( element,) {
     if (!element) {
       throw new Error(`Элемент не существует в TransactionPage`);
     };
     this.element = element;
-    this.lastOptions = lastOptions;
     this.registerEvents();
   }
 
-  static lastOptions = {};
   /**
    * Вызывает метод render для отрисовки страницы
    * */
@@ -44,8 +42,7 @@ class TransactionsPage {
         console.log(`tyc`);
         this.removeAccount();
       }
-      if (e.target == document.querySelector(`.transaction__remove`)) {
-        console.log(`tyc`);
+      if (e.target.closest(`.transaction__remove`)) {
         this.removeTransaction(e.target.dataset.id);
       };
     })
@@ -85,7 +82,7 @@ class TransactionsPage {
    * По удалению транзакции вызовите метод App.update()
    * */
   removeTransaction( id ) {
-    if (this.lastOptions && confirm(`Вы действительно хотите удалить этоту транзакцию?`)) {
+    if (confirm(`Вы действительно хотите удалить этоту транзакцию?`)) {
       
       Transaction.remove(id, this.lastOptions, (err, response) => {
         console.log(response);
@@ -125,11 +122,8 @@ class TransactionsPage {
         if (err) {
           return err;
         } else if (response.success == true) {
-          // this.renderTransactions([]);
-          response.data.forEach(object => {
-            // console.log(object);
-            this.renderTransactions(object);
-          });
+          this.renderTransactions(response.data);
+          
         }
       })
     }
@@ -213,8 +207,11 @@ class TransactionsPage {
    * используя getTransactionHTML
    * */
   renderTransactions( data ) {
-    document.querySelector(`.content`).insertAdjacentHTML("afterbegin", this.getTransactionHTML(data));
-    
+    const content = document.querySelector(`.content`);
+    content.innerHTML = ``;
+    data.forEach(item => {
+      content.innerHTML += this.getTransactionHTML(item);
+    });
   }
 }
 
