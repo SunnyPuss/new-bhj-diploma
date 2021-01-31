@@ -39,7 +39,6 @@ class TransactionsPage {
     document.querySelector(`.content-wrapper`).addEventListener(`click`, (e) => {
       e.preventDefault();
       if (e.target == document.querySelector(`.remove-account`)) {
-        console.log(`tyc`);
         this.removeAccount();
       }
       if (e.target.closest(`.transaction__remove`)) {
@@ -136,9 +135,10 @@ class TransactionsPage {
    * Устанавливает заголовок: «Название счёта»
    * */
   clear() {
-    this.renderTransactions([]);
+    this.lastOptions = ``;
+    this.renderTransactions(data = []);
     this.renderTitle(`Название счёта`);
-    this.lastOptions = {};
+    
   }
 
   /**

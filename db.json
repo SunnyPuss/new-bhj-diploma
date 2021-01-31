@@ -30,11 +30,6 @@
       "name": "Бизнес",
       "user_id": "1",
       "id": "3"
-    },
-    {
-      "name": "ам ам",
-      "user_id": "3ke8pe1d8skkcrv9t5",
-      "id": "3ke8pe1h9gkkkbgwk7"
     }
   ],
   "transactions": [
@@ -212,6 +207,30 @@
       "sum": 450,
       "account_id": "3ke8pe1h9gkkkbgwk7",
       "created_at": "2021-01-30T23:00:23.028Z"
+    },
+    {
+      "id": "3ke8pe1dqkkklsii6y",
+      "type": "INCOME",
+      "name": "скушал банк",
+      "sum": 100000,
+      "account_id": "3ke8pe13ikkklsi3ko",
+      "created_at": "2021-01-31T23:43:30.969Z"
+    },
+    {
+      "id": "3ke8pe16x0kklsk50v",
+      "type": "EXPENSE",
+      "name": "траванулся",
+      "sum": 300000,
+      "account_id": "3ke8pe13ikkklsi3ko",
+      "created_at": "2021-01-31T23:44:47.214Z"
+    },
+    {
+      "id": "3ke8pe1bwwkklspoeb",
+      "type": "INCOME",
+      "name": "plus",
+      "sum": 123,
+      "account_id": "3ke8pe11s4kklspgfn",
+      "created_at": "2021-01-31T23:49:05.602Z"
     }
   ]
 }
