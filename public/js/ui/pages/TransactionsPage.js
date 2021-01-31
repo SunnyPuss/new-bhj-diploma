@@ -135,6 +135,8 @@ class TransactionsPage {
    * Устанавливает заголовок: «Название счёта»
    * */
   clear() {
+    const content = document.querySelector(`.content`);
+    content.innerHTML = ``;
     this.lastOptions = ``;
     this.renderTransactions(data = []);
     this.renderTitle(`Название счёта`);
