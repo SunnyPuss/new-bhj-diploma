@@ -41,8 +41,11 @@ class TransactionsPage {
     document.querySelector(`.content-wrapper`).addEventListener(`click`, (e) => {
       e.preventDefault();
       if (e.target == document.querySelector(`.remove-account`)) {
+        console.log(`tyc`);
         this.removeAccount();
-      } else if (e.target == document.querySelector(`.transaction__remove`)) {
+      }
+      if (e.target == document.querySelector(`.transaction__remove`)) {
+        console.log(`tyc`);
         this.removeTransaction(e.target.dataset.id);
       };
     })
@@ -84,7 +87,7 @@ class TransactionsPage {
   removeTransaction( id ) {
     if (this.lastOptions && confirm(`Вы действительно хотите удалить этоту транзакцию?`)) {
       
-      Account.remove(id, this.lastOptions, (err, response) => {
+      Transaction.remove(id, this.lastOptions, (err, response) => {
         console.log(response);
         if (err) {
           return err;
@@ -118,10 +121,11 @@ class TransactionsPage {
         }
       })
       
-      Transaction.list(this.lastOptions, (err, response) => {
+      Transaction.list(options, (err, response) => {
         if (err) {
           return err;
         } else if (response.success == true) {
+          // this.renderTransactions([]);
           response.data.forEach(object => {
             // console.log(object);
             this.renderTransactions(object);
