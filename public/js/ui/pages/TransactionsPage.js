@@ -62,13 +62,14 @@ class TransactionsPage {
     if (this.lastOptions && confirm(`Вы действительно хотите удалить этот счёт?`)) {
       
       
-      Account.remove(this.lastOptions.account_id, this.lastOptions, (err, response) => {
+      Account.remove(this.lastOptions.account_id, {}, (err, response) => {
         console.log(response);
         if (err) {
           return err;
         } else if (response.success == true) {
-          App.update();
           this.clear();
+          App.update();
+          
           
         }
       })
@@ -83,7 +84,7 @@ class TransactionsPage {
   removeTransaction( id ) {
     if (confirm(`Вы действительно хотите удалить этоту транзакцию?`)) {
       
-      Transaction.remove(id, this.lastOptions, (err, response) => {
+      Transaction.remove(id, {}, (err, response) => {
         console.log(response);
         if (err) {
           return err;
@@ -135,12 +136,9 @@ class TransactionsPage {
    * Устанавливает заголовок: «Название счёта»
    * */
   clear() {
-    const content = document.querySelector(`.content`);
-    content.innerHTML = ``;
-    this.lastOptions = ``;
-    this.renderTransactions(data = []);
+    this.renderTransactions([]);
     this.renderTitle(`Название счёта`);
-    
+    this.lastOptions = null;
   }
 
   /**
@@ -197,7 +195,7 @@ class TransactionsPage {
     </div>
     <div class="col-md-2 transaction__controls">
         
-        <button class="btn btn-danger transaction__remove" data-id="${item.account_id}">
+        <button class="btn btn-danger transaction__remove" data-id="${item.id}">
             <i class="fa fa-trash"></i>  
         </button>
     </div>

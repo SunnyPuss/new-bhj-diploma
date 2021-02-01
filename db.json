@@ -30,6 +30,11 @@
       "name": "Бизнес",
       "user_id": "1",
       "id": "3"
+    },
+    {
+      "name": "ds & bb reference",
+      "user_id": "3ke8pe1d8skkcrv9t5",
+      "id": "3ke8pe1gswkkn234tf"
     }
   ],
   "transactions": [
@@ -231,6 +236,78 @@
       "sum": 123,
       "account_id": "3ke8pe11s4kklspgfn",
       "created_at": "2021-01-31T23:49:05.602Z"
+    },
+    {
+      "id": "3ke8pe16pkkkn1exg6",
+      "type": "INCOME",
+      "name": "онлайн трансляция донаты",
+      "sum": 50000,
+      "account_id": "3ke8pe1clwkkn1ecic",
+      "created_at": "2021-02-01T20:40:26.837Z"
+    },
+    {
+      "id": "3ke8pe1egkkkn1fg4s",
+      "type": "EXPENSE",
+      "name": "подготовка",
+      "sum": 36000,
+      "account_id": "3ke8pe1clwkkn1ecic",
+      "created_at": "2021-02-01T20:40:51.051Z"
+    },
+    {
+      "id": "3ke8pe1geckkn1ism9",
+      "type": "INCOME",
+      "name": "twc tyc",
+      "sum": 12315,
+      "account_id": "3ke8pe199ckkn1ikq3",
+      "created_at": "2021-02-01T20:43:27.200Z"
+    },
+    {
+      "id": "3ke8pe16a8kkn1j61v",
+      "type": "EXPENSE",
+      "name": "ащ ащ",
+      "sum": 3214,
+      "account_id": "3ke8pe199ckkn1ikq3",
+      "created_at": "2021-02-01T20:43:44.610Z"
+    },
+    {
+      "id": "3ke8pe1fp0kkn1nxgb",
+      "type": "INCOME",
+      "name": "ктулху фтагн",
+      "sum": 213,
+      "account_id": "3ke8pe12l0kkn1nj42",
+      "created_at": "2021-02-01T20:47:26.746Z"
+    },
+    {
+      "id": "3ke8pe1c9ckkn1qi4r",
+      "type": "EXPENSE",
+      "name": "выф",
+      "sum": 5423134,
+      "account_id": "3ke8pe1dxgkkn1qe45",
+      "created_at": "2021-02-01T20:49:26.858Z"
+    },
+    {
+      "id": "3ke8pe19k0kkn1r95l",
+      "type": "EXPENSE",
+      "name": "выфвыф",
+      "sum": 3213214,
+      "account_id": "3ke8pe142ckkn1qu9s",
+      "created_at": "2021-02-01T20:50:01.880Z"
+    },
+    {
+      "id": "3ke8pe1b14kkn23i9s",
+      "type": "INCOME",
+      "name": "plin plin plon",
+      "sum": 3000,
+      "account_id": "3ke8pe1gswkkn234tf",
+      "created_at": "2021-02-01T20:59:33.567Z"
+    },
+    {
+      "id": "3ke8pe1dhkkkn25k42",
+      "type": "EXPENSE",
+      "name": "plip plop splish splash",
+      "sum": 2000,
+      "account_id": "3ke8pe1gswkkn234tf",
+      "created_at": "2021-02-01T21:01:09.265Z"
     }
   ]
 }
